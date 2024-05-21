@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="musicPlayer.css">
+	<title>Music Player</title>
+</head>
+<body>
+
+	<div class="main-div">
+
+		<div class="music-container">
+
+			<div class="back-button"></div>
+
+			<h2 id="title">Lotus Lane</h2>
+			<h3 id="artist">The Loyalist</h3>
+
+				<div class="image-container">
+
+					<img src="anthem-of-victory-111206.jpg">
+					
+				</div>
+
+				<audio src="anthem-of-victory-111206.mp3"></audio>
+
+					<!-- progress bar -->
+
+					<div class="progressbar-container" id="progress-container">
+
+						<div class="progressbar-duration-meter">
+
+							<div class="current-time" id="currentTime">0:00</div>
+							<div class="durationTime" id="durationTime">2:44</div>
+
+						</div>
+
+						<div class="progress-div" id="progress-div">
+
+							<div class="progress" id="progress"></div>
+								
+						</div>
+						
+					</div>
+
+					<!-- controls  -->
+
+					
+					<div class="music-controls">
+
+						<div class="prev button">
+								
+							<img src="rewind-button.png" id="prev">	
+
+						</div>
+
+						<div class="play button">
+								
+							<img src="play.png" id="play">	
+
+						</div>
+
+						<div class="next button">
+								
+							<img src="forward-button.png" id="next">	
+
+						</div>
+						
+					</div>
+			
+		</div>
+		
+	</div>
+
+</body>
+	
+<script>
+		
+	var play = document.getElementById("play");
+	var previous = document.getElementById("prev");
+	var next = document.getElementById("next");
+	var music = document.querySelector("audio");
+	var img = document.querySelector("img");
+	var artist = document.getElementById("artist");
+	var title = document.getElementById("title");
+	var progress = document.getElementById("progress");
+	var currentTiming = document.getElementById("currentTime");	
+	var songDurationTime = document.getElementById("durationTime");
+	var progressDiv = document.getElementById("progress-div");
+
+
+
+	var songs = [
+
+		{
+			name: "anthem-of-victory-111206",
+			title: "Lotu",
+			artist: "The Loyalist"
+		},
+
+		{
+			name: "bounce-114024",
+			title: "Lotu",
+			artist: "Aurora"
+		},
+
+		{
+			name: "epicaly-113907",
+			title: "Lotu",
+			artist: "Gorkhali Takma"
+		}
+
+	]
+
+
+	isplaying = false;
+
+
+	play.addEventListener("click" , () => {
+
+		if(isplaying){
+
+			pauseMusic();
+		}
+
+		else{
+
+			playMusic();
+		}
+	})
+
+	playMusic = () => {
+
+		music.play();
+		isplaying = true;
+		img.classList.add("image-animation");
+		// play.classList.replace()
+	}
+
+	pauseMusic = () => {
+
+		music.pause();
+		isplaying = false;
+		img.classList.remove("image-animation");
+		// play.classList.replace()
+	}
+
+
+	var index = 0;
+
+	var loadSong = (songs) => {
+
+		title.textContent   = songs.title;
+		artist.textContent  = songs.artist;
+		music.src 			= songs.name + ".mp3";
+		img.src 			= songs.name + ".jpg";
+	}
+
+	// loadSong(songs[1]);
+
+
+	next.addEventListener("click" , nextSong);
+	// previous.addEventListener("click" , prevSong);
+
+
+
+	function nextSong(){
+
+		index = (index + 1) % songs.length;
+		loadSong(songs[index]);
+		playMusic();
+	}
+
+	var prevSong = ()=> {
+
+		index = (index - 1 + songs.length) % songs.length;
+		loadSong(songs[index]);
+		playMusic();
+	}
+
+	previous.addEventListener("click" , prevSong);
+
+	music.addEventListener('timeupdate' , (event) => {
+
+		// console.log(event);
+
+		// CurrentTime / TotalTimeOfSong * 100
+
+		const {currentTime , duration} = event.srcElement;
+		// console.log(currentTime);
+		var progressTime = (currentTime / duration) * 100;
+		// console.log(progressTime);
+		progress.style.width = `${progressTime}%`;
+		// console.log(duration);
+
+		var minute = Math.floor(duration / 60);
+		var second = Math.floor(duration % 60);
+
+		var totalDuration = `${minute}:${second}`;
+
+			if(duration){
+
+				songDurationTime.textContent = `${totalDuration}`;
+
+			}
+
+		var currentminute = Math.floor(currentTime / 60);
+		var currentsecond = Math.floor(currentTime % 60);
+
+		// console.log(currentminute);
+		// console.log(currentsecond);
+
+
+		if(currentsecond < 10){
+
+			// console.log("hii1")
+			currentTiming.textContent = (`${currentminute}:0${currentsecond}`);
+
+				if(currentminute < 10){
+
+					if(currentminute == 0){
+
+						// console.log("minute");
+						currentTiming.textContent = (`${currentminute}:0${currentsecond}`);
+
+					}
+
+					else if(currentsecond < 10){
+
+						// console.log("hii");
+						currentTiming.textContent = (`0${currentminute}:0${currentsecond}`);
+
+					}
+
+			}
+
+		}
+
+		
+
+		else{
+
+			currentTiming.textContent = (`${currentminute}:${currentsecond}`);
+		}
+
+	})
+
+	progressDiv.addEventListener("click" , (event) => {
+
+		console.log(event);
+
+		const {duration} = music;
+
+		var moveProgressBar = (event.offsetX / event.srcElement.clientWidth) * duration;
+
+		console.log(moveProgressBar);
+
+		music.currentTime = moveProgressBar;
+
+	})
+
+	music.addEventListener("ended" , nextSong);
+
+
+</script>
+
+</html>
