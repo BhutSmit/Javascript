@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Stop Watch</title>
+
+	<style>
+			
+		*{
+
+			padding: 0px;
+			margin: 0px;
+			box-sizing: border-box;
+		}
+
+		body{
+
+			background-color: rgba(50, 50, 50, 0.735);
+			/*background-image: url(anonymus-hacker-computer-wallpaper-preview.jpg);*/
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			object-fit: cover;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+		}
+
+		.container{
+
+			width: 400px;
+			height: 250px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: rgba(255, 255, 255, 0.10);
+			backdrop-filter: blure(20px);
+			border-radius: 10px;
+		}
+
+		.btn{
+
+			width: 90px;
+			height: 40px;
+			border-radius: 10px;
+			border: 2px solid rgba(0, 0, 0, 0.5);
+			font-family: sans-serif;
+			padding: 5px;
+			margin: 0px 5px;
+		}
+
+		.btn:hover{
+
+			background-color: rgba(0, 0, 255, 0.3);
+			color: #ffffff;
+			border: 2px solid #ffffff;
+			transform: translateY(-2px);
+			transition: all 0.2s linear;
+		}
+
+		.counter{
+
+			color: rgba(255, 255, 255, 0.9);
+		    margin: 0px 0px 28px 135px;
+		    /*background-image: linear-gradient(rgba(100, 150, 255, 0.5) , rgba(100, 255, 255, 0.5));*/
+		    -webkit-text-fill-color: transparent;
+		    -webkit-background-clip: text;
+		    -moz-background-clip: text;
+		    font-size: 50px;
+		    animation: colorchange 10s infinite;
+		}
+
+		@keyframes colorchange{
+
+			0%{
+				 background-image: linear-gradient(rgba(100, 150, 255, 0.9) , rgba(100, 255, 255, 0.5));
+			}
+
+			25%{
+				 background-image: linear-gradient(rgba(50, 150, 20, 0.5) , rgba(20, 50, 10, 0.9));
+			}
+
+			50%{
+				 background-image: linear-gradient(rgba(255, 150, 150, 0.9) , rgba(100, 50, 100, 0.9));
+			}
+
+			100%{
+				 background-image: linear-gradient(rgba(50, 20, 30, 0.9) , rgba(80, 100, 255, 0.5));
+			}
+		}
+
+
+
+
+	</style>
+
+</head>
+<body>
+
+	<!-- <h1 align="center" style="color: rgba(255, 255, 255, 0.9);">Stop Watch</h1> -->
+
+	<div class="container">
+
+		<div>
+
+			<h1 id="h1" class="counter">0</h1>
+
+			<input type="button" name="" class="btn" value="Start" onclick="startcounter()">
+			<input type="button" name="" class="btn btn-reset" value="Pause" onclick="stopcounter()">
+			<input type="button" name="" class="btn" value="Reset" onclick="resetcounter()">
+
+		</div>	
+		
+	</div>
+
+</body>
+	
+	<script>
+			
+			var counter = 0;
+			var c;	
+
+			function printcounter(){
+
+				counter++;
+				var temp = document.getElementById("h1");
+				temp.innerHTML = counter/100;
+
+			}
+
+			function startcounter(){
+
+				c = setInterval(printcounter ,10);	
+			}
+
+			function resetcounter(){
+
+				stopcounter();
+				counter = 0;
+				var temp = document.getElementById("h1");
+				temp.innerHTML = "0";
+			}
+
+			function stopcounter(){
+
+				clearInterval(c);
+			}
+			
+	</script>
+
+</html>

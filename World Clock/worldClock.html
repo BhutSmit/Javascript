@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>World Clock</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 1px 2px 10px 1px rgba(0, 0, 0, 0.2);">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">World Cl<i class="bi bi-clock"></i>ck</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="text-dark" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact US</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="container mt-5">
+    <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">India <i class="bi bi-clock"></i></h4>
+          </div>
+          <div class="card-body" style="height: 420px;">
+            <h1 class="card-title pricing-card-title mt-4" id="india-time"></h1>
+            <p class="mt-4 mb-5">
+              The Republic of India uses only one time zone (even though it spans across two geographical time zones) across the whole nation and all its territories, called Indian Standard Time (IST), which equates to UTC+05:30, i.e. five and a half hours ahead of Coordinated Universal Time (UTC).
+            </p>
+            <button type="button" class="w-100 mt-5 btn btn-lg btn-outline-primary">Get More Info</button>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">USA <i class="bi bi-clock"></i></h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title my-3 pricing-card-title" id="usa-time"></h1>
+            <p class="text-center">
+              Time in the United States, by law, is divided into nine standard time zones covering the states, territories and other US possessions, with most of the United States observing daylight saving time (DST) for approximately the spring, summer, and fall months. The time zone boundaries and DST observance are regulated by the Department of Transportation, but no single map of those existed until the agency announced intentions to make one in September 2022.
+            </p>
+            <a href="https://en.wikipedia.org/wiki/Time_in_the_United_States"><button type="button" class="w-100 btn btn-lg btn-outline-primary">Get More Info</button></a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">China <i class="bi bi-clock"></i></h4>
+          </div>
+          <div class="card-body" style="height: 420px">
+            <h1 class="card-title pricing-card-title mt-4" id="china-time"></h1>
+            <p class="mt-3 mb-4">
+              The time in China follows a single standard time offset of UTC+08:00 (eight hours ahead of Coordinated Universal Time), even though China spans almost five geographical time zones. The official national standard time is called Beijing Time (BJT, Chinese: 北京时间) domestically and China Standard Time (CST) internationally.
+            </p>
+            <button type="button" class="w-100 mt-5 btn btn-lg btn-outline-primary">Get More Info</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <label for="appt">Select a time:</label>
+  <input type="time" id="alarm" name="appt">
+
+  </main>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+<script>
+
+
+	let IndiaTime = document.getElementById("india-time");
+	let UsaTime = document.getElementById("usa-time");
+	let ChinaTime = document.getElementById("china-time");
+  let Alarm = document.getElementById("alarm");
+
+
+  function worldTime(){
+
+    var d = new Date();
+
+    UsaTime.innerHTML = d.toLocaleString("en-US", {timeZone: "America/New_York"}).split(', ')[1];
+    IndiaTime.innerHTML = d.toLocaleString("en-US", {timeZone: "Asia/Kolkata"}).split(', ')[1];
+    ChinaTime.innerHTML = d.toLocaleString("en-US", {timeZone: "Asia/Shanghai"}).split(', ')[1];
+
+      console.log(d.getHours() , d.getMinutes());
+
+      let alarmHour = Alarm.value.split(':')[0];
+      let alarmMin = Alarm.value.split(":")[1];
+
+      if(d.getHours() == alarmHour && d.getMinutes() == alarmMin){
+
+        // alert("Alarm Is Work");
+
+      }
+
+      console.log(Alarm.value);
+
+  }
+
+  setInterval(worldTime , 1000);
+
+
+
+
+</script>
+
+</html>
