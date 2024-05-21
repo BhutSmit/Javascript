@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Attendence</title>
+
+	<style>
+
+		body{
+
+			background-color: #87a7cc;
+			/*display: grid;
+			place-item: center;*/
+			animation: colorchange 5s infinite;
+			/*background-color:  #a4b0be ;*/
+			transition: all 0.2s linear;
+		}
+
+		@keyframes colorchange{
+
+			0%{
+
+				 background: linear-gradient(0deg ,   #dee3e8 , #edf0f2 , #dee3e8);
+			}
+
+			10%{
+
+				 background: linear-gradient(36deg ,  #dee3e8 , #edf0f2 , #dee3e8);
+			}
+
+			20%{
+
+				 background: linear-gradient(72deg ,  #dee3e8 , #edf0f2 , #dee3e8);
+			}
+
+
+			30%{
+
+				 background: linear-gradient(108deg ,  #dee3e8 , #edf0f2 , #dee3e8);
+			}
+
+
+			40%{
+
+				 background: linear-gradient(144deg ,  #dee3e8 , #edf0f2 , #dee3e8);
+			}
+
+			45%{
+
+				 background: linear-gradient(180deg ,  #dee3e8 , #edf0f2 , #dee3e8);
+			}
+
+			50%{
+
+				 background: linear-gradient(180deg ,   #dee3e8 , #edf0f2 , #dee3e8);
+			}
+
+			60%{
+
+				 background: linear-gradient(216deg ,   #dee3e8 , #edf0f2 , #dee3e8);
+			}
+
+			70%{
+
+				 background: linear-gradient(252deg ,   #dee3e8 , #edf0f2 , #dee3e8);
+			}
+
+			80%{
+
+				 background: linear-gradient(288deg ,   #dee3e8 , #edf0f2 , #dee3e8);
+			}
+
+			90%{
+
+				 background: linear-gradient(324deg ,   #dee3e8 , #edf0f2 , #dee3e8);
+			}
+
+			100%{
+
+				 background: linear-gradient(360deg,   #dee3e8, #edf0f2 , #dee3e8);
+			}
+		}
+		
+		#a{
+
+			width: 100px;
+			height: 50px;
+		} 	
+
+		#ans{
+			position: fixed;
+			top: 150px;
+			left: 50%;
+			width: 500px;
+			height: 300px;
+			/*border: 2px solid black;*/
+			border-radius: 10px;
+			box-shadow: -1px -1px 10px 2px #d7d2cc ,
+						 2px 2px 15px 2px #304352;
+
+		  	color: #ff7f50;
+		  	padding: 10px;
+			/*overflow: scroll;*/
+		}
+
+		input[type = "checkbox"]{
+
+			width: 16px;
+			height: 16px;
+			margin: 0px 5px 30px 0px;
+			appearance: none;
+    		-webkit-appearance: none;
+    		outline: none;
+			border-radius: 5px;
+			/*background-color: #c7ecee;*/
+			background-color: red;
+			transform: translateY(30px);
+
+		}
+
+		input[type = "checkbox"]:checked{
+
+			background-color: rgba(0, 200, 0, 0.9);	
+		}
+
+		.button{
+
+			width: 100px;
+			height: 30px;
+			/*position: fixed;*/
+			background-color: #a4b0be;
+			border: 2px solid #747d8c;
+			border-radius: 10px;
+		}
+
+		.button:hover{
+
+			background-color: #a4b0be;
+
+		}
+
+		.roll{
+
+			/*color: #ff7f50;*/
+		}
+
+
+
+	</style>
+</head>
+<body>
+
+	<div id="ans"></div>
+
+	<input type="button" name="" value="Present All" class="button" onclick="presentall() , ans()" id="presentall">
+	<input type="button" name="" value="Absent All"  class="button" onclick="absentall()  , ans()"  id="absentall">
+	<br>
+
+
+
+</body>
+
+<script>
+
+	var temp = document.getElementsByTagName("input");
+	var temp2 = document.getElementById("ans");
+
+	// document.write("<hr>" + "A" + "<hr>");
+	
+	for(i = 101 ; i <= 165 ; i++){
+
+		document.write("<input type='checkbox' name = 'a' value="+i+" onclick='ans()'>" + "<span class = 'roll'>" + i + "</span>" + "<br>")
+	}
+
+	document.write("<br>");
+
+	document.write("<hr>" + "B" + "<hr>");	
+
+	for(i = 201 ; i <= 265 ; i++){
+
+		document.write("<input type='checkbox' value="+i+" onclick='ans()'>" + i + "<br>" + "<hr>")
+	}	
+
+	document.write("<br>");
+
+	document.write("<hr>" + "C" + "<hr>");
+		
+	for(i = 301 ; i <= 365 ; i++){
+
+		document.write("<input type='checkbox' value="+i+" onclick='ans()'>" + i + "<br>" + "<hr>")
+	}	
+
+	function presentall(){
+
+			console.log(temp)
+
+			for(i=0;i<temp.length;i++){
+				temp[i].checked=true;
+			}
+	}
+
+	// function ans(){
+	// 		var temp = document.getElementsByTagName("input");
+	// 		var temp2 = document.getElementById("ans");
+
+
+	// 		for(i = 0 ; i < temp.length ; i++){
+
+
+	// 			if(temp2.checked==false){
+					
+	// 				// if(temp2.innerHTML.length > 2){
+
+	// 					console.log(temp2.innerHTML);
+
+	// 						temp2.innerHTML += " ,  "
+	// 					// }
+
+	// 				console.log(a.value);
+
+	// 					temp2.innerHTML += a.value;
+	// 			}
+
+	// 		}
+
+			// temp2.innerHTML = temp2.innerHTML.substring(0 , temp2.innerHTML.length - 1);
+	// }
+
+
+
+	function ans(){
+
+		temp2.innerHTML = " "	
+
+			for(i = 0 ; i < temp.length ; i++){
+
+				if(temp[i].checked==false){
+
+					 	temp2.innerHTML += temp[i].value + " ";
+					 	console.log(temp[i].value);
+					}
+
+
+			}
+
+			temp2.innerHTML = temp2.innerHTML.substring(0 , temp2.innerHTML.length - 1);
+
+	}
+
+
+
+	// function ans(){
+
+	// 		var temp = document.getElementsByTagName("input");
+	// 		var temp2 = document.getElementById("ans");
+
+	// 		for(i = 0; i < temp.length ; i++){
+
+	// 				if(temp[i].checked==false){
+
+	// 				 	temp2.innerHTML = temp;
+	// 				}
+	// 		}
+
+
+	// }
+
+	function absentall(){
+			var temp = document.getElementsByTagName("input");
+			for(i=0;i<temp.length;i++){
+				temp[i].checked=false;
+			}
+	}
+
+
+
+	// Random Color Generate
+
+
+		arr = [];
+
+	for(i = 65 ; i <=69 ; i++){
+
+		arr.push(String.fromCharCode(i));
+
+	}
+
+	for(i = 0 ; i < 10 ; i++){
+
+		arr.push(i);
+
+	}	
+
+	function colorgenerator(){
+
+		str = "#"
+
+			for(i = 0 ; i < 6 ; i++){
+
+				str += arr[Math.floor(Math.random() * (arr.length - 1))];
+				console.log(arr);
+
+			}
+
+			return str;
+	}
+
+
+
+
+
+
+</script>
+
+</html>
