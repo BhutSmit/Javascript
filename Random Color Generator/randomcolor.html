@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Random Color Generator</title>
+
+	<style>
+			
+		.color{
+
+			width: 200px;
+			height: 200px;
+			border: 5px solid black;
+			color: #ffffff;
+
+		}
+
+	</style>
+
+</head>
+<body>
+
+	<div class="color" id="display"></div>
+
+</body>
+
+<script>
+		
+	arr = [];
+
+	for(i = 65 ; i <=69 ; i++){
+
+		arr.push(String.fromCharCode(i));
+
+	}
+
+	for(i = 0 ; i < 10 ; i++){
+
+		arr.push(i);
+
+	}	
+
+	function colorgenerator(){
+
+		str = "#"
+
+			for(i = 0 ; i < 6 ; i++){
+
+				str += arr[Math.floor(Math.random() * (arr.length - 1))];
+				console.log(arr);
+
+			}
+
+			return str;
+	}
+
+	
+	document.getElementById("display").style.backgroundColor = colorgenerator();
+
+	// x = document.getElementById("display").style.backgroundColor
+	// document.getElementById("colorcode") = x 
+
+	// document.getElementById("display").innnerHTML = document.getElementById("display").style.backgroundColor;
+	console.log(document.getElementById("display").style.backgroundColor);
+
+	var color = document.getElementById("display");
+
+	color.innerHTML = document.getElementById("display").style.backgroundColor;	
+
+</script>
+</html>
