@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Event Listener</title>
+
+	<style>
+			
+		.header{
+
+			width: 100%;
+			height: 10%;
+			background-color: red;
+			text-align: center;
+		}
+
+		#outer{
+
+			width: 500px;
+			height: 500px;
+			background-color: red;
+		}
+
+		#inner{
+
+			width: 250px;
+			height: 250px;
+			background-color: pink;
+		}
+
+	</style>
+
+</head>
+<body>
+
+	<div class="header" id="header">
+		<h1>Hello</h1>
+	</div>
+
+	<div id="outer">
+
+		<h2>outer</h2>
+
+			<div id="inner">
+					
+				<h2>inner</h2>	
+
+			</div>
+		
+	</div>
+
+</body>
+	
+<script>
+		
+	// document.getElementById("header").onclick = abc;
+
+
+	// function abc(){
+	// 	document.getElementById("header").style.backgroundColor = "pink";
+	// }	
+
+
+
+	// document.getElementById("header").addEventListener("click" , function(){
+
+	 	// document.getElementById("header").style.border = "2px solid black";
+
+	 	// ---------- or -----------
+
+	// 	this.style.border = "2px solid black";0
+	// })
+
+
+
+	// --------------------------------------------------------------------------------- Third Parameter Of AddeventLister value is true or false
+
+	// first call inner div
+	// second call outer div
+
+	// document.querySelector("#inner").addEventListener("click" , function(){
+
+	// 	alert("Inner Div");
+	// });
+
+
+	// document.querySelector("#outer").addEventListener("click" , function(){
+
+	// 	alert("Outer Div");
+	// })
+
+
+	// --------------------- or ------------------------
+
+	// first call outer div
+	// second call inner div
+
+	document.querySelector("#inner").addEventListener("click" , function(){
+
+		alert("Inner Div");
+	} , true);
+
+
+	document.querySelector("#outer").addEventListener("click" , function(){
+
+		alert("Outer Div");
+	} , true);
+
+
+</script>
+
+</html>
